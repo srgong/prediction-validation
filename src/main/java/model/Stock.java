@@ -2,27 +2,25 @@ package model;
 
 /**
  * Created by Sharon on 8/26/18.
+ * Represents each stock processed.
+ * Stocks are equal when hour and stock ticker are the same.
  */
-public class Stock extends Row{
+public class Stock{
     String stock;
     double price;
     int hour;
-
-//    enum type {
-//        ACTUAL, PREDICTED;
-//    }
-
+    
+    public Stock() {
+        stock = "";
+        price = 0;
+        hour = 0;
+    }
+    
     public Stock(String [] row) {
-        hour = Integer.parseInt(row[0]);
+        hour = Integer.parseInt(row[0].trim());
         stock = row[1];
         price = Double.parseDouble(row[2]);
 
-    }
-
-    public Stock(String stock, Double price, int hour) {
-        this.stock = stock;
-        this.price = price;
-        this.hour = hour;
     }
 
     public String getStock() {
@@ -48,9 +46,7 @@ public class Stock extends Row{
     public void setHour(int hour) {
         this.hour = hour;
     }
-
-    //todo override equals.
-    //todo equal if hour & stock are the same
+    
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -59,5 +55,10 @@ public class Stock extends Row{
 
         final Stock other = (Stock) obj;
         return other.stock.equals(this.stock) && other.hour==this.hour;
+    }
+
+    @Override
+    public String toString() {
+        return hour + "|" + stock + "|" + price;
     }
 }

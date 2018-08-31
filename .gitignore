@@ -1,1 +1,9 @@
 .DS_Store
+.iml
+.xml
+.idea/
+.gradle/
+gradle/
+gradlew
+gradlew.bat
+out/
