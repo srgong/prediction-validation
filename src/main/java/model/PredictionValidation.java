@@ -152,9 +152,12 @@ public class PredictionValidation {
                     }
                     w = new Window(start+1, end+1, errorSum, numStocks);
                     System.out.println(w);
+                    bw.write(w.toString());
+                    bw.newLine();
                 }
+                bw.flush();
             }
-            bw.flush();
+            
         } catch(IOException e) {
             e.printStackTrace();
         }

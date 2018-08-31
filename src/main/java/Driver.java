@@ -1,4 +1,4 @@
-import model.PredictionValidation;
+import model.*;
 import java.io.*;
 
 class Driver {
@@ -23,28 +23,28 @@ class Driver {
     
     public static void main(String args[]) {
         
-        if(args.length != 4) {
+        if(args.length != 3) {
             System.err.println("Usage:\n    " +
-                    "java Driver.java <actual_file> <predicted_file> <window_file> <comparison_file>");
+                    "java Driver.java <actual_file> <predicted_file> <window_file>");
             System.exit(1);
         }
 
         String actualPath= args[0];
         String predictedPath= args[1];
         String windowPath = args[2];
-        String comparisonPath = args[3];
+        String outputPath = "output/comparison.txt";
 
         try {
             
-            File [] inputDir = new File [] {new File(actualPath), new File(predictedPath), new File(windowPath), new File(comparisonPath)};
+            File [] inputDir = new File [] {new File(actualPath), new File(predictedPath), new File(windowPath)};
             for(int i = 0; i < 2; i++) {
                 checkInputFiles(inputDir[i]);
             }
-            checkOutputFile(inputDir[3]);
+            checkOutputFile(new File(outputPath));
             
             PredictionValidation pv = new PredictionValidation();
             pv.calculateComparisons(actualPath, predictedPath);
-            pv.calculateRollingWindowErrors(windowPath, comparisonPath);
+            pv.calculateRollingWindowErrors(windowPath, outputPath);
             
         } catch (IOException e) {
             e.printStackTrace();

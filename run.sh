@@ -4,5 +4,4 @@
 #
 #python ./src/prediction-validation.py ./input/window.txt ./input/actual.txt ./input/predicted.txt ./output/comparison.txt
 
-javac ./src/main/java/Driver.java
-java Driver ./src/main/resources/input/actual.txt ./src/main/resources/input/predicted.txt ./src/main/resources/input/window.txt ./src/main/resources/output/comparison.txt
+java -jar prediction-validation_main.jar input/actual.txt input/predicted.txt input/window.txt
